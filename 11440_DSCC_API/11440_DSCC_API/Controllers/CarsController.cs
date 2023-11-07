@@ -17,18 +17,21 @@ namespace _11440_DSCC_API.Controllers
             CarsDbContext = dbContext;
         }
 
+        // Action to get all cars from database
         [HttpGet]
         public ActionResult<IEnumerable<Car>> GetCars()
         {
             return CarsDbContext.Cars.ToList();
         }
 
+        // Action to get a car by id from database
         [HttpGet("{id}")]
         public ActionResult<Car> GetCar(int id)
         {
             return CarsDbContext.Cars.Find(id);
         }
 
+        // Action to edit a car by id
         [HttpPut("{id}")]
         public ActionResult EditCar(int id, Car car)
         {
@@ -43,6 +46,8 @@ namespace _11440_DSCC_API.Controllers
             return NoContent();
         }
 
+
+        // Action to create new istance of a object 
         [HttpPost]
         public ActionResult CreateCar(Car car)
         {
@@ -51,6 +56,7 @@ namespace _11440_DSCC_API.Controllers
             return CreatedAtAction("GetCar", new { id = car.Id }, car);
         }
 
+        // Action to delete a car from database
         [HttpDelete("{id}")]
         public ActionResult DeleteCar(int id)
         {
